@@ -1,0 +1,12 @@
+install docker 
+install postgres on docker
+install tableplus to connect to postgres
+setup a makefile to run the scripts
+setup postgres scripts in makefile
+install golang migrate library and install it
+make db/migration folder in your project
+create a migration file in the folder
+add migration script to makefile
+run the migration script
+install sqlc library // go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
+sqlc init
