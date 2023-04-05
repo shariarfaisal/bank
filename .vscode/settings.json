@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["shariarfaisal", "stretchr"]
+  "cSpell.words": [
+    "gomock",
+    "mapstructure",
+    "mockdb",
+    "shariarfaisal",
+    "stretchr"
+  ]
 }
