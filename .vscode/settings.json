@@ -3,6 +3,7 @@
     "gomock",
     "mapstructure",
     "mockdb",
+    "paseto",
     "shariarfaisal",
     "stretchr"
   ]
