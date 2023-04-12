@@ -30,7 +30,7 @@ func TestCreateTransfer(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			store := mockdb.NewMockStore(ctrl)
 
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			request := httptest.NewRequest(http.MethodPost, "/transfers", nil)
