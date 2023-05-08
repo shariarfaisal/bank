@@ -1,13 +1,20 @@
 version: "3"
 services:
   postgres:
-    image: postgres:latest
-    container_name: postgres
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=bank
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "6500:5432"
-    volumes:
-      - progresDB:/var/lib/postgresql/data
-    env_file:
-      - ./app.env
-volumes:
-  progresDB:
+      - "8080:8080"
+    environment:
+      - DB_SOURCE=postgresql://root:admin@postgres:5432/bank?sslmode=disable
+    depends_on:
+      - postgres
+    entrypoint: ["/app/wait-for", "postgres:5432", "--", "/app/start.sh"]
+    command: ["/app/main"]

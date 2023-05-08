@@ -1,5 +1,5 @@
 postgres:
-	docker run --name postgres14 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=admin -d postgres:14.6-alpine
+	docker run --name postgres14 --network bank_network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=admin -d postgres:14.6-alpine
 createdb:
 	docker exec -it postgres14 createdb --username=root --owner=root simple_bank
 dropdb:
@@ -30,5 +30,11 @@ server:
 
 mock:
 	mockgen -package mockdb -destination db/mock/store.go  github.com/shariarfaisal/bank/db/sqlc Store
+
+image:
+	docker build -t 01822531439/bank:latest .
+
+run:
+	docker run --name bank -p 8080:8080 01822531439/bank:latest
 	
 .PHONY: postgres createdb dropdb migrateup1 migrateup2 sqlc test server mock newmigration migratedown migratedown1
